@@ -7,9 +7,6 @@
  */
 package coconuts;
 
-import java.util.Observable;
-import java.util.Observer;
-
 /**
  * Course SWE2410-121
  * Fall 2025-2026
@@ -18,10 +15,11 @@ import java.util.Observer;
  * @author eckbergj
  * @version created on 10/9/2025 11:29 AM
  */
-public class ScoreBoard implements Observer {
+public class ScoreBoard implements GameObserver {
 
+    // hold the game state (score, lives, etc.)
     @Override
-    public void update(Observable o, Object arg) {
+    public void update() {
 
     }
 }
