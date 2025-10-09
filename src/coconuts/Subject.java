@@ -16,4 +16,9 @@ package coconuts;
  * @version created on 10/9/2025 11:25 AM
  */
 public interface Subject {
+
+    public void attach(GameObserver ob);
+    public void detach(GameObserver ob);
+    public void notifyObservers();
+
 }

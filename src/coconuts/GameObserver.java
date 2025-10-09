@@ -16,4 +16,7 @@ package coconuts;
  * @version created on 10/9/2025 11:23 AM
  */
 public interface GameObserver {
+
+    public void update();
+
 }
