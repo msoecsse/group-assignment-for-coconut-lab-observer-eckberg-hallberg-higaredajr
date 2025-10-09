@@ -6,7 +6,7 @@
 We need to, "Introduce the Observer Pattern to handle one object hitting another. 
 In particular, create a subject class that responds to hit events and multiple observer 
 classes that capture the effects of various hit events."
-I think the subject be the **game manager**, because that's the class that manages hit events.
+I think the subject should be the **game manager**, because that's the class that manages hit events.
 This feels wierd because I thought we were gonna apply the pattern to the domain objects, but
 I can't think of a way to do that, that doesnt massively decrease cohesion?  
 
