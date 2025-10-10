@@ -31,7 +31,7 @@ public class ScoreBoard implements GameObserver {
 
     // This function needs to take in HitEvents and translate them to changes in the scoreboard
     @Override
-    public void update() {
+    public void update(HitEvent hit) {
 
     }
 }
