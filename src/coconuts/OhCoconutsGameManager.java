@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 // This class manages the game, including tracking all island objects and detecting when they hit
-public class OhCoconutsGameManager {
+public class OhCoconutsGameManager implements Subject{
     private final Collection<IslandObject> allObjects = new LinkedList<>();
     private final Collection<HittableIslandObject> hittableIslandSubjects = new LinkedList<>();
     private final Collection<IslandObject> scheduledForRemoval = new LinkedList<>();
@@ -87,6 +87,11 @@ public class OhCoconutsGameManager {
         for (IslandObject thisObj : allObjects) {
             for (HittableIslandObject hittableObject : hittableIslandSubjects) {
                 if (thisObj.canHit(hittableObject) && thisObj.isTouching(hittableObject)) {
+                    // TODO if an island object can hit and if the hittable object is touching
+                    // the object that can hit
+                    // TODO we could turn hit event into an abstract class with different types of
+                    // concrete hit events.
+                    // TODO this loop already knows what needs to
                     // TODO: add code here to process the hit
                     scheduledForRemoval.add(hittableObject);
                     gamePane.getChildren().remove(hittableObject.getImageView());
@@ -109,5 +114,20 @@ public class OhCoconutsGameManager {
 
     public boolean done() {
         return coconutsInFlight == 0 && gameTick >= MAX_TIME;
+    }
+
+    @Override
+    public void attach(GameObserver ob) {
+
+    }
+
+    @Override
+    public void detach(GameObserver ob) {
+
+    }
+
+    @Override
+    public void notifyObservers() {
+
     }
 }

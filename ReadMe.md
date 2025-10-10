@@ -8,7 +8,7 @@ In particular, create a subject class that responds to hit events and multiple o
 classes that capture the effects of various hit events."
 I think the subject should be the **game manager**, because that's the class that manages hit events.
 This feels wierd because I thought we were gonna apply the pattern to the domain objects, but
-I can't think of a way to do that, that doesnt massively decrease cohesion?  
+I can't think of a way to do that, that doesn't massively decrease cohesion?  
 
 We have the scoreboard object as an observer, 
 and another observer that removes objects
@@ -27,7 +27,7 @@ We can use the HitEvent class within the if() block which we can implement to pr
 * Coconut hitting the ground
 * Coconut hitting crab & ending game 
 The HitEvent receives the OhCoconutsGameManager instance in its constructor.
-It will then call OhCoconutsGameManager methods that update the observers
+It will then call OhCoconutsGameManager methods that update the observers?
 
 ## TODO:
 * Build out the ScoreBoard, implement update() and add the JavaFX elements to the Controller
@@ -38,12 +38,21 @@ It will then call OhCoconutsGameManager methods that update the observers
 (for example when a laser hits a coconut the coconut needs to be removed)
 
 ## Questions
-* Does it make sense for the OhCoconutsGameManager to implement the subject interface?
 * Would the HitEvent be better to implement the subject interface? But then we would have to attach
 and detach subjects a bunch as the objects are created & deleted
 
 My main concern here is that the OhCoconutsGameManager is the only object that has full knowledge of
-the HitEvents because its the one that creates it. If we just send the HitEvent out to the observers via 
+the HitEvents because it's the one that creates it. If we just send the HitEvent out to the observers via 
 the OhCoconutsGameManager? The only hitch in this is that the OhCoconutsGameManager seems to be the one creating 
 and deleting the objects?
+
+* So a hit event will be generated if a object that can hit (crab and laser and ground) hits a hittable object (coconut)
+  * This hit event will be sent to the observer
+  * So the notify method for the subject takes in a hit event and then calls the update method of the
+  scoreboard & passes a boolean into the update. The update method then uses that boolean to determine 
+  which of the two fields in the scoreboard it needs to change (coconut hit ground or coconut hit laser)
+* Game end observer 
+
+**only thing thats hittable is the coconut** **the only things that can hit would be the ground, crab, and laser**
+
 
