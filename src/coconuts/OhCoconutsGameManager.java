@@ -6,9 +6,10 @@ import javafx.scene.layout.Pane;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.Observer;
 
 // This class manages the game, including tracking all island objects and detecting when they hit
-public class OhCoconutsGameManager {
+public class OhCoconutsGameManager implements Subject {
     private final Collection<IslandObject> allObjects = new LinkedList<>();
     private final Collection<HittableIslandObject> hittableIslandSubjects = new LinkedList<>();
     private final Collection<IslandObject> scheduledForRemoval = new LinkedList<>();
@@ -46,10 +47,11 @@ public class OhCoconutsGameManager {
     }
 
     public void shootLaser() {
-        registerObject(new LaserBeam(this, getCrab().hittable_height(),
-                getCrab().x + (getCrab().width / 2)));
+        LaserBeam laser = new LaserBeam(this, getCrab().hittable_height(),
+                getCrab().x + (getCrab().width / 2));
+        registerObject(laser);
+        gamePane.getChildren().add(laser.getImageView());
     }
-
     public int getHeight() {
         return height;
     }
@@ -114,5 +116,20 @@ public class OhCoconutsGameManager {
 
     public boolean done() {
         return coconutsInFlight == 0 && gameTick >= MAX_TIME;
+    }
+
+    @Override
+    public void attach(GameObserver ob) {
+
+    }
+
+    @Override
+    public void detach(GameObserver ob) {
+
+    }
+
+    @Override
+    public void notifyObservers() {
+
     }
 }
