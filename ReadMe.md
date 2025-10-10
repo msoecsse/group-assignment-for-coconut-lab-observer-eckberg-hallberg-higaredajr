@@ -39,4 +39,11 @@ It will then call OhCoconutsGameManager methods that update the observers
 
 ## Questions
 * Does it make sense for the OhCoconutsGameManager to implement the subject interface?
+* Would the HitEvent be better to implement the subject interface? But then we would have to attach
+and detach subjects a bunch as the objects are created & deleted
+
+My main concern here is that the OhCoconutsGameManager is the only object that has full knowledge of
+the HitEvents because its the one that creates it. If we just send the HitEvent out to the observers via 
+the OhCoconutsGameManager? The only hitch in this is that the OhCoconutsGameManager seems to be the one creating 
+and deleting the objects?
 

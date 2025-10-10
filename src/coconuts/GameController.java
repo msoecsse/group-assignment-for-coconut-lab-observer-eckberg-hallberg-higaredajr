@@ -1,6 +1,7 @@
 package coconuts;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -23,6 +24,10 @@ public class GameController {
     @FXML
     private Pane theBeach;
     private OhCoconutsGameManager theGame;
+    @FXML
+    private Label shotCount;
+    @FXML
+    private Label landCount;
 
     @FXML
     public void initialize() {
@@ -55,5 +60,11 @@ public class GameController {
                 started = false;
             }
         }
+    }
+    public Label getShotCount() {
+        return shotCount;
+    }
+    public Label getGroundCount() {
+        return landCount;
     }
 }
