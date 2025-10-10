@@ -28,11 +28,6 @@ public class Crab extends HittableIslandObject {
         // do nothing
     }
 
-    @Override
-    public boolean canHit(IslandObject other) {
-        return other.isHittable();
-    }
-
     // Captures the crab crawling sideways
     public void crawl(int offset) {
         x += offset;

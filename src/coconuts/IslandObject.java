@@ -54,7 +54,7 @@ public abstract class IslandObject {
     }
 
     public boolean canHit(IslandObject other) {
-        return false;
+        return other.isHittable();
     }
 
     public boolean isTouching(IslandObject other) {

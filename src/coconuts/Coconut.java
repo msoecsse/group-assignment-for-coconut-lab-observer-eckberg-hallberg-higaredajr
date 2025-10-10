@@ -16,4 +16,14 @@ public class Coconut extends HittableIslandObject {
     public void step() {
         y += 5;
     }
+
+    @Override
+    protected int hittable_height() {
+        return y + (int)coconutImage.getHeight();
+    }
+
+    @Override
+    public boolean isFalling() {
+        return true;
+    }
 }
