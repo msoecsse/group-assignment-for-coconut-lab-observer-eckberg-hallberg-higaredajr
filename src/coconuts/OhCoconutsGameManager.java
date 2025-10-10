@@ -45,6 +45,11 @@ public class OhCoconutsGameManager {
         }
     }
 
+    public void shootLaser() {
+        registerObject(new LaserBeam(this, getCrab().hittable_height(),
+                getCrab().x + (getCrab().width / 2)));
+    }
+
     public int getHeight() {
         return height;
     }

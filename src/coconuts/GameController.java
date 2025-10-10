@@ -51,6 +51,8 @@ public class GameController {
             theGame.getCrab().crawl(10);
         } else if (keyEvent.getCode() == KeyCode.LEFT && !theGame.done()) {
             theGame.getCrab().crawl(-10);
+        } else if (keyEvent.getCode() == KeyCode.UP && !theGame.done()) {
+            theGame.shootLaser();
         } else if (keyEvent.getCode() == KeyCode.SPACE) {
             if (!started) {
                 coconutTimeline.play();
