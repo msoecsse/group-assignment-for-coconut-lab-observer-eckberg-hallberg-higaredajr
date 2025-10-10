@@ -14,8 +14,23 @@ public class Crab extends HittableIslandObject {
     }
 
     @Override
+    protected int hittable_height() {
+        return (int)crabImage.getHeight();
+    }
+
+    @Override
+    public boolean isGroundObject() {
+        return true;
+    }
+
+    @Override
     public void step() {
         // do nothing
+    }
+
+    @Override
+    public boolean canHit(IslandObject other) {
+        return other.isHittable();
     }
 
     // Captures the crab crawling sideways
