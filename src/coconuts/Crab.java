@@ -15,7 +15,7 @@ public class Crab extends HittableIslandObject {
 
     @Override
     protected int hittable_height() {
-        return (int)crabImage.getHeight();
+        return y;
     }
 
     @Override
