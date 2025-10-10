@@ -58,7 +58,8 @@ public abstract class IslandObject {
     }
 
     public boolean isTouching(IslandObject other) {
-        return false;
+        return (other.hittable_height() == hittable_height() &&
+                other.x + (other.width / 2) >= x && other.x + (other.width * 2) <= x + width);
     }
 
     public abstract void step();
