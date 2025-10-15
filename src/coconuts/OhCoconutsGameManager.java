@@ -98,6 +98,9 @@ public class OhCoconutsGameManager implements Subject {
             for (HittableIslandObject hittableObject : hittableIslandSubjects) {
                 if (thisObj.canHit(hittableObject) && thisObj.isTouching(hittableObject)) {
                     // TODO: add code here to process the hit
+                    // This involves using the notify method to call the observers update method
+                    // and pass the hit event to the observer(s) (only the scoreboard)
+                    // add the right objects to the scheduledForRemoval
                     scheduledForRemoval.add(hittableObject);
                     gamePane.getChildren().remove(hittableObject.getImageView());
                 }
