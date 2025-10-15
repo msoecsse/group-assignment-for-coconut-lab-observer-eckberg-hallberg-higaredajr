@@ -36,6 +36,7 @@ It will then call OhCoconutsGameManager methods that update the observers?
 * Have the OhCoconutsGameManager implement the subject interface and its methods
 * Implement an observer that servers to remove Island objects 
 (for example when a laser hits a coconut the coconut needs to be removed)
+* Manage item deletion when off screen or interacted with
 
 ## Questions
 * Would the HitEvent be better to implement the subject interface? But then we would have to attach

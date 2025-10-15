@@ -51,6 +51,9 @@ public class OhCoconutsGameManager implements Subject {
                 getCrab().x + (getCrab().width / 2));
         registerObject(laser);
         gamePane.getChildren().add(laser.getImageView());
+        laser.display();
+        //System.out.println(AssertNotNull(laser));
+        System.out.println("laser");
     }
     public int getHeight() {
         return height;
