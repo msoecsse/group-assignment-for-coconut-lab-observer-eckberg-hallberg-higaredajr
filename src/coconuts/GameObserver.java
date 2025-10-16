@@ -17,6 +17,6 @@ package coconuts;
  */
 public interface GameObserver {
 
-    public void update(HitEvent hit);
+    public void update(HitEvents hitType);
 
 }
