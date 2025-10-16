@@ -11,8 +11,9 @@ public abstract class IslandObject {
     protected final OhCoconutsGameManager containingGame;
     protected int x, y;
     ImageView imageView = null;
+    protected final HitEvents hitType;
 
-    public IslandObject(OhCoconutsGameManager game, int x, int y, int width, Image image) {
+    public IslandObject(OhCoconutsGameManager game, int x, int y, int width, Image image, HitEvents hitType) {
         containingGame = game;
         if (image != null) {
             imageView = new ImageView(image);
@@ -23,6 +24,7 @@ public abstract class IslandObject {
         this.y = y;
         this.width = width;
         display();
+        this.hitType = hitType;
         //System.out.println(this + " left " + left() + " right " + right());
     }
 

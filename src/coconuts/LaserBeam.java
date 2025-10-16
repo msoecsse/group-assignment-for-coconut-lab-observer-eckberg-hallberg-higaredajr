@@ -9,7 +9,7 @@ public class LaserBeam extends IslandObject {
     private static final Image laserImage = new Image("file:images/laser-1.png");
 
     public LaserBeam(OhCoconutsGameManager game, int eyeHeight, int crabCenterX) {
-        super(game, crabCenterX, eyeHeight, WIDTH, laserImage);
+        super(game, crabCenterX, eyeHeight, WIDTH, laserImage, HitEvents.LASER);
     }
 
     public int hittable_height() {

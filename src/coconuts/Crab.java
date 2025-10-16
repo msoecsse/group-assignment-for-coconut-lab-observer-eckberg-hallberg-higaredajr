@@ -10,7 +10,7 @@ public class Crab extends HittableIslandObject {
     private static final Image crabImage = new Image("file:images/crab-1.png");
 
     public Crab(OhCoconutsGameManager game, int skyHeight, int islandWidth) {
-        super(game, islandWidth / 2, skyHeight, WIDTH, crabImage);
+        super(game, islandWidth / 2, skyHeight, WIDTH, crabImage, HitEvents.CRAB);
     }
 
     @Override

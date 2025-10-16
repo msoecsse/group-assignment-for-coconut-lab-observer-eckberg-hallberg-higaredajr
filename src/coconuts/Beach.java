@@ -5,7 +5,7 @@ package coconuts;
 public class Beach extends IslandObject {
 
     public Beach(OhCoconutsGameManager game, int skyHeight, int islandWidth) {
-        super(game, 0, skyHeight, islandWidth, null);
+        super(game, 0, skyHeight, islandWidth, null, HitEvents.BEACH);
         // System.out.println("Beach at y = " + this.y);
     }
 
