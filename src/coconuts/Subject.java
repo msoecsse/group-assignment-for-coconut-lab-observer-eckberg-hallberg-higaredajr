@@ -19,6 +19,6 @@ public interface Subject {
 
     public void attach(GameObserver ob);
     public void detach(GameObserver ob);
-    public void notifyObservers();
+    public void notifyObservers(HitEvents hitType);
 
 }

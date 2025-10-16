@@ -13,6 +13,7 @@ public class OhCoconutsGameManager implements Subject {
     private final Collection<IslandObject> allObjects = new LinkedList<>();
     private final Collection<HittableIslandObject> hittableIslandSubjects = new LinkedList<>();
     private final Collection<IslandObject> scheduledForRemoval = new LinkedList<>();
+    private final Collection<GameObserver> observers = new LinkedList<>();
     private final int height, width;
     private final int DROP_INTERVAL = 10;
     private final int MAX_TIME = 100;
@@ -126,16 +127,18 @@ public class OhCoconutsGameManager implements Subject {
 
     @Override
     public void attach(GameObserver ob) {
-
+        observers.add(ob);
     }
 
     @Override
     public void detach(GameObserver ob) {
-
+        observers.remove(ob);
     }
 
     @Override
-    public void notifyObservers() {
-
+    public void notifyObservers(HitEvents hitType) {
+        for (GameObserver ob : observers) {
+            ob.update(hitType, this);
+        }
     }
 }
