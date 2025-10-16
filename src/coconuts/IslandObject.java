@@ -65,4 +65,8 @@ public abstract class IslandObject {
     }
 
     public abstract void step();
+
+    public HitEvents getHitType() {
+        return hitType;
+    }
 }
