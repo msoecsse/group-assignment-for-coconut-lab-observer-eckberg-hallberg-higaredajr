@@ -8,10 +8,7 @@ In particular, create a subject class that responds to hit events and multiple o
 classes that capture the effects of various hit events."
 I think the subject should be the **game manager**, because that's the class that manages hit events.
 This feels wierd because I thought we were gonna apply the pattern to the domain objects, but
-I can't think of a way to do that, that doesn't massively decrease cohesion?  
-
-We have the scoreboard object as an observer, 
-and another observer that removes objects
+I can't think of a way to do that, that doesn't massively decrease cohesion?
 
 Scoreboard Game Observer: The scoreboard needs to encapsulate scoreboard state
 * Needs to take in the GUI components in the constructor so it can update them
@@ -30,22 +27,30 @@ The HitEvent receives the OhCoconutsGameManager instance in its constructor.
 It will then call OhCoconutsGameManager methods that update the observers?
 
 ## TODO:
-* Build out the ScoreBoard, implement update() and add the JavaFX elements to the Controller
-  * We just need to link text boxes to the scoreboard via stamp? coupling
-* Implement the HitEvent class to handle the proper hit events
-* Have the OhCoconutsGameManager implement the subject interface and its methods
-* Implement an observer that servers to remove Island objects 
-(for example when a laser hits a coconut the coconut needs to be removed)
+1. Build out the ScoreBoard, implement observer interface
+  * We just need to link text boxes to the scoreboard via stamp? coupling, or add getters and setters to controller
+  * add the JavaFX elements to the Controller
+  * Implement update method
 
-## Questions
-* Would the HitEvent be better to implement the subject interface? But then we would have to attach
-and detach subjects a bunch as the objects are created & deleted
+2. Implement the HitEvent class to handle the proper hit events
 
-My main concern here is that the OhCoconutsGameManager is the only object that has full knowledge of
-the HitEvents because it's the one that creates it. If we just send the HitEvent out to the observers via 
-the OhCoconutsGameManager? The only hitch in this is that the OhCoconutsGameManager seems to be the one creating 
-and deleting the objects?
+3. Have the OhCoconutsGameManager implement the subject interface
+  * Implement attach method
+  * Implement detatch method
+  * Implement notifyAll method
 
+4. Manage item deletion inside game manager when off-screen or interacted with
+  * This just involves adding the correct items to the scheduledForRemoval list
+  * Includes when lasers leave the game boundaries
+  * Includes when Coconuts hit the ground or hit the player
+  * Includes when the coconuts get hit by the laser
+
+* I think that the UML is done? (Nathan Halberg)
+* I think the Sequence Diagram is done? (Anthony Higareda Jr.)
+* Report incomplete (John Eckberg)
+
+
+## Notes
 * So a hit event will be generated if a object that can hit (crab and laser and ground) hits a hittable object (coconut)
   * This hit event will be sent to the observer
   * So the notify method for the subject takes in a hit event and then calls the update method of the
