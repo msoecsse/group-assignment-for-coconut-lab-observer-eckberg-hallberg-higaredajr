@@ -19,7 +19,7 @@ public class Beach extends IslandObject {
 
     @Override
     protected int hittableHeight() {
-        return super.y - islandDifference;
+        return super.y + islandDifference;
     }
 }
 
