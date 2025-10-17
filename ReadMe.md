@@ -60,6 +60,7 @@ It will then call OhCoconutsGameManager methods that update the observers?
 * Any improvements to reduce coupling and improve cohesion
 * Come up with test Scenarios 
 * Game manager is 100% just a do it class
+* Hit Boxes are still too big 
 
 
 ## Notes

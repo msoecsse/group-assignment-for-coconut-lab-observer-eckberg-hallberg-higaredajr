@@ -67,6 +67,7 @@ public abstract class IslandObject {
     }
 
     public boolean isTouching(IslandObject other) {
+        // TODO hit boxes are still kinda messed up (too big?)
 
         // check if overlap on x axis
         boolean x_overlap = (this.x < other.x + other.width) &&
@@ -78,8 +79,8 @@ public abstract class IslandObject {
 
         // collision occurs only if there is overlap on BOTH axes.
         return x_overlap && y_overlap;
-        //return (other.hittableHeight() == hittableHeight() &&
-                //other.x + (other.width / 2) >= x && other.x + (other.width * 2) <= x + width);
+//        return (other.hittableHeight() == hittableHeight() &&
+//                other.x + (other.width / 2) >= x && other.x + (other.width * 2) <= x + width);
     }
 
     public abstract void step();
