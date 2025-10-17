@@ -59,6 +59,7 @@ It will then call OhCoconutsGameManager methods that update the observers?
 * Theres a wierd dimension swap going on between island object and the game manager
 * Any improvements to reduce coupling and improve cohesion
 * Come up with test Scenarios 
+* Game manager is 100% just a do it class
 
 
 ## Notes

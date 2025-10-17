@@ -44,7 +44,7 @@ public class ScoreBoard implements GameObserver {
                 // so we don't actually have to do anything in here
                 // because the game loop handles the object deletion
                 // and if we kill the crab here it throws a null pointer?
-                // TODO maybe make a pop-up?
+                // TODO maybe call a function to make a pop-up?
                 break;
             case NULL_EVENT:
         }
