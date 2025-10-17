@@ -46,7 +46,7 @@ public abstract class IslandObject {
 
     protected int hittableHeight() {
         System.out.println("Warning: Hittable Height is not overridden");
-        System.err.println(hitType);
+        System.out.println(hitType);
         return 0;
     }
 
@@ -68,14 +68,15 @@ public abstract class IslandObject {
 
     public boolean isTouching(IslandObject other) {
         // TODO hit boxes are still kinda messed up (too big?)
+        // TODO maybe we need a hittable width as well?
 
         // check if overlap on x axis
         boolean x_overlap = (this.x < other.x + other.width) &&
                 (this.x + this.width > other.x);
 
        // check if overlap on y axis (assuming width & height are the same)
-        boolean y_overlap = (this.y < other.y + other.width) &&
-                (this.y + this.width > other.y);
+        boolean y_overlap = (this.y < other.hittableHeight()) &&
+                (this.hittableHeight() > other.y);
 
         // collision occurs only if there is overlap on BOTH axes.
         return x_overlap && y_overlap;
