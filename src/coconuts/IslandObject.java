@@ -19,6 +19,7 @@ public abstract class IslandObject {
     protected final HitEvents hitType;
 
     // TODO why is it x,y here and height and width here in the game manager?
+    //  when we actually instantiate the sub classes, we swap the x & y before it goes into the super
     public IslandObject(OhCoconutsGameManager game, int x, int y, int width, Image image, HitEvents hitType) {
         containingGame = game;
         if (image != null) {
