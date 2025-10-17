@@ -8,7 +8,9 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Objects;
 
-// This class manages the game, including tracking all island objects and detecting when they hit
+/** This class manages the game, including tracking all island objects and detecting when they hit
+ * Modified by Anthony, John
+ */
 public class OhCoconutsGameManager implements Subject {
     private final Collection<IslandObject> nonHittableObjects = new LinkedList<>();
     private final Collection<HittableIslandObject> coconuts = new LinkedList<>();
@@ -107,7 +109,6 @@ public class OhCoconutsGameManager implements Subject {
             // check to see if laser is in skybox
             if(thisObj.isRising()){
                 if(thisObj.y <= 0){
-                    System.out.println("removing laser");
                     scheduledForRemoval.add(thisObj);
                     gamePane.getChildren().remove(thisObj.getImageView());
                     break;
@@ -131,7 +132,7 @@ public class OhCoconutsGameManager implements Subject {
                     coconutDestroyed();
 
                     // handle the non-hittable object (thisObj) removal
-                    // beach doesnt need to be handled here because the coconut already got removed
+                    // beach doesn't need to be handled here because the coconut already got removed
                     // that could be moved back into the if statement if people think it improves readability
                     if (hitType == HitEvents.LASER) {
                         // for laser, remove both
@@ -148,11 +149,9 @@ public class OhCoconutsGameManager implements Subject {
 
         }
         for (IslandObject thisObj : scheduledForRemoval) {
-            // TODO fix instance of?
             if (!thisObj.isHittable()) {
                 nonHittableObjects.remove(thisObj);
-            }
-            if (thisObj instanceof HittableIslandObject) {
+            }else{
                 coconuts.remove((HittableIslandObject) thisObj);
             }
         }

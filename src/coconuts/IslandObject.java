@@ -72,7 +72,7 @@ public abstract class IslandObject {
         boolean x_overlap = (this.x < other.x + other.width) &&
                 (this.x + this.width > other.x);
 
-       // check if overlap on y axis
+       // check if overlap on y axis (assuming width & height are the same)
         boolean y_overlap = (this.y < other.y + other.width) &&
                 (this.y + this.width > other.y);
 

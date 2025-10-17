@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 // This is a domain class; other than Image, do not introduce JavaFX or other GUI components here
 public class Crab extends IslandObject {
     private static final int WIDTH = 50; // assumption: height and width are the same
-    // Thats not true at all??
     private static final Image crabImage = new Image("file:images/crab-1.png");
 
     public Crab(OhCoconutsGameManager game, int skyHeight, int islandWidth) {
