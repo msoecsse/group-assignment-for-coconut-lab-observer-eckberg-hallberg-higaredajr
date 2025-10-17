@@ -22,6 +22,7 @@ public class Coconut extends HittableIslandObject {
         return y + width;
     }
 
+    // we dont use this because when the coconut hits the beach its a hitevent
     @Override
     public boolean isFalling() {
         return true;
