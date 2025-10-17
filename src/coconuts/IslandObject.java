@@ -60,6 +60,8 @@ public abstract class IslandObject {
     }
 
     public boolean isTouching(IslandObject other) {
+        // TODO this only deletes if the objects are at the exact same height,
+        //  not overlapping.
         return (other.hittable_height() == hittable_height() &&
                 other.x + (other.width / 2) >= x && other.x + (other.width * 2) <= x + width);
     }

@@ -10,7 +10,7 @@ import java.util.Observer;
 
 // This class manages the game, including tracking all island objects and detecting when they hit
 public class OhCoconutsGameManager implements Subject {
-    private final Collection<IslandObject> allObjects = new LinkedList<>();
+    private final Collection<IslandObject> nonHittableObjects = new LinkedList<>();
     private final Collection<HittableIslandObject> hittableIslandSubjects = new LinkedList<>();
     private final Collection<IslandObject> scheduledForRemoval = new LinkedList<>();
     private final Collection<GameObserver> observers = new LinkedList<>();
@@ -29,6 +29,7 @@ public class OhCoconutsGameManager implements Subject {
         this.width = width;
         this.gamePane = gamePane;
 
+        // TODO why do we swap height and width? height and width here and x,y in the islandobject??
         this.theCrab = new Crab(this, height, width);
         registerObject(theCrab);
         gamePane.getChildren().add(theCrab.getImageView());
@@ -40,10 +41,14 @@ public class OhCoconutsGameManager implements Subject {
     }
 
     private void registerObject(IslandObject object) {
-        allObjects.add(object);
+        // TODO it might make sense to have one list of hittable
+        // and one list of non hittable, instead of one list of all objects
+        // and one list of hittable objects
         if (object.isHittable()) {
             HittableIslandObject asHittable = (HittableIslandObject) object;
             hittableIslandSubjects.add(asHittable);
+        } else {
+            nonHittableObjects.add(object);
         }
     }
 
@@ -87,29 +92,48 @@ public class OhCoconutsGameManager implements Subject {
     }
 
     public void advanceOneTick() {
-        for (IslandObject o : allObjects) {
+        for (IslandObject o : hittableIslandSubjects) {
             o.step();
             o.display();
         }
-        // see if objects hit; the hit itself is something you will add
+        for (IslandObject o : nonHittableObjects) {
+            o.step();
+            o.display();
+        }
         // you can't change the lists while processing them, so collect
         //   items to be removed in the first pass and remove them later
         scheduledForRemoval.clear();
-        for (IslandObject thisObj : allObjects) {
+        for (IslandObject thisObj : nonHittableObjects) {
             for (HittableIslandObject hittableObject : hittableIslandSubjects) {
                 if (thisObj.canHit(hittableObject) && thisObj.isTouching(hittableObject)) {
                     // TODO: add code here to process the hit
+                    // the goal here is that only the coconut is a hittable object
                     // This involves using the notify method to call the observers update method
                     // and pass the hit event to the observer(s) (only the scoreboard)
+                    // we do this by getting the hit type of the non hittable
                     // add the right objects to the scheduledForRemoval
-                    scheduledForRemoval.add(hittableObject);
+                    // The only hittable objects are the coconut instances
+                    // The crab, laser and beach can hit the coconut, but cannot be hit themselves
+                    // We also need to ensure based in the hit type that we remove/keep the non
+                    // hittable object hitting the hittable object
+                    // so when the crab hits the coconut, remove both
+                    // when the laser hits the coconut, remove both
+                    // when the beach hits the coconut, remove only the coconut
+
+                    scheduledForRemoval.add(hittableObject); // this should use the method below
                     gamePane.getChildren().remove(hittableObject.getImageView());
                 }
             }
+
         }
         // actually remove the objects as needed
+        // we would need to update this if we switched list setup
+        // This would need to remove from non-hittable list and hittable list
         for (IslandObject thisObj : scheduledForRemoval) {
-            allObjects.remove(thisObj);
+            // TODO fix instance of?
+            if (!thisObj.isHittable()) {
+                nonHittableObjects.remove(thisObj);
+            }
             if (thisObj instanceof HittableIslandObject) {
                 hittableIslandSubjects.remove((HittableIslandObject) thisObj);
             }

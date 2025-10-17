@@ -27,19 +27,20 @@ The HitEvent receives the OhCoconutsGameManager instance in its constructor.
 It will then call OhCoconutsGameManager methods that update the observers?
 
 ## TODO:
-1. Build out the ScoreBoard, implement observer interface
+1. Build out the ScoreBoard, implement observer interface (anthony)
   * We just need to link text boxes to the scoreboard via stamp? coupling, or add getters and setters to controller
-  * add the JavaFX elements to the Controller
+  * add the JavaFX elements to the Controller Done?
   * Implement update method
+  * Add scoreboard to game manager
 
-2. Implement the HitEvent class to handle the proper hit events
+2. Implement the HitEvent class to handle the proper hit events DONE (Enum)
 
-3. Have the OhCoconutsGameManager implement the subject interface
+3. Have the OhCoconutsGameManager implement the subject interface DONE
   * Implement attach method
   * Implement detatch method
   * Implement notifyAll method
 
-4. Manage item deletion inside game manager when off-screen or interacted with
+4. Manage item deletion inside game manager when off-screen or interacted with (John Eckberg)
   * This just involves adding the correct items to the scheduledForRemoval list
   * Includes when lasers leave the game boundaries
   * Includes when Coconuts hit the ground or hit the player
@@ -48,6 +49,12 @@ It will then call OhCoconutsGameManager methods that update the observers?
 * I think that the UML is done? (Nathan Halberg)
 * I think the Sequence Diagram is done? (Anthony Higareda Jr.)
 * Report incomplete (John Eckberg)
+
+* Headers/javadocs meet lab specs (modified by, etc)
+
+* Add a pop up for game end?
+
+* Test Scenarios 
 
 
 ## Notes

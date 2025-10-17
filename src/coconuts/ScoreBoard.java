@@ -16,14 +16,16 @@ import javafx.scene.control.Label;
  *
  * @author eckbergj
  * @version created on 10/9/2025 11:29 AM
+ * Modified by Anthony
  */
 public class ScoreBoard implements GameObserver {
 
     private Label landCount;
     private Label shotCount;
-    private int CoconutsOnGround;
-    private int CoconutsShot;
+    private int CoconutsOnGround = 0;
+    private int CoconutsShot = 0;
     // hold the game state (score, lives, etc.)
+
     public ScoreBoard(Label landCountLabel, Label shotCountLabel) {
         this.landCount = landCountLabel;
         this.shotCount = shotCountLabel;
@@ -41,6 +43,12 @@ public class ScoreBoard implements GameObserver {
                 theGame.killCrab();
             case NULL_EVENT:
         }
+        updateLabels();
+    }
+
+    private void updateLabels(){
+        landCount.setText(Integer.toString(CoconutsOnGround));
+        shotCount.setText(Integer.toString(CoconutsShot));
     }
 }
     
