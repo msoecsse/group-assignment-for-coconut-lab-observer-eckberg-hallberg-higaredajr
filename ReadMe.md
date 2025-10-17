@@ -61,6 +61,7 @@ It will then call OhCoconutsGameManager methods that update the observers?
 * Game manager is 100% just a do it class
 * Hit Boxes are still too big
 * Headers/javadocs meet lab specs (modified by, etc)
+* The crab can run off the edge of the map (Done?)
 
 
 ## Notes
