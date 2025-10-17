@@ -37,8 +37,10 @@ public class ScoreBoard implements GameObserver {
         switch (hitType){
             case LASER:
                 coconutsShot++;
+                break;
             case BEACH:
                 coconutsOnGround++;
+                break;
             case CRAB:
                 //theGame.killCrab();
                 // so we don't actually have to do anything in here
@@ -47,6 +49,7 @@ public class ScoreBoard implements GameObserver {
                 // TODO maybe call a function to make a pop-up?
                 break;
             case NULL_EVENT:
+                break;
         }
         updateLabels();
     }
