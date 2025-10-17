@@ -4,9 +4,14 @@ package coconuts;
 // This is a domain class; do not introduce JavaFX or other GUI components here
 public class Beach extends IslandObject {
 
+    private final int islandDifference;
+
     public Beach(OhCoconutsGameManager game, int skyHeight, int islandWidth) {
         super(game, 0, skyHeight, islandWidth, null, HitEvents.BEACH);
-        System.out.println("Beach at y = " + this.y);
+        System.out.println("Beach at y = " + super.y);
+        System.out.println("Beach Sky Height "+ skyHeight);
+        System.out.println("Beach Island Width " + islandWidth);
+        this.islandDifference = islandWidth-skyHeight;
     }
 
     @Override
@@ -14,7 +19,7 @@ public class Beach extends IslandObject {
 
     @Override
     protected int hittableHeight() {
-        return y;
+        return super.y - islandDifference;
     }
 }
 

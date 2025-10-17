@@ -6,6 +6,11 @@ import javafx.scene.image.ImageView;
 // an object in the game, either something coming from the island or falling on it
 // Each island object has a location and can determine if it hits another island object
 // This is a domain class; do not introduce JavaFX or other GUI components here
+
+/**
+ * Responsibility: An object in the game, either something coming from the island or falling on it
+ * Modified by John Eckberg
+ */
 public abstract class IslandObject {
     protected final int width;
     protected final OhCoconutsGameManager containingGame;

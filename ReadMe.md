@@ -50,7 +50,6 @@ It will then call OhCoconutsGameManager methods that update the observers?
 * I think the Sequence Diagram is done? (Anthony Higareda Jr.)
 * Report incomplete (John Eckberg)
 
-* Headers/javadocs meet lab specs (modified by, etc)
 
 ## TODOS/Bug fixes
 * Add a pop up for game end?
@@ -60,7 +59,8 @@ It will then call OhCoconutsGameManager methods that update the observers?
 * Any improvements to reduce coupling and improve cohesion
 * Come up with test Scenarios 
 * Game manager is 100% just a do it class
-* Hit Boxes are still too big 
+* Hit Boxes are still too big
+* Headers/javadocs meet lab specs (modified by, etc)
 
 
 ## Notes
