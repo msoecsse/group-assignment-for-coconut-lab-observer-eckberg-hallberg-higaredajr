@@ -54,14 +54,14 @@ It will then call OhCoconutsGameManager methods that update the observers?
 ## TODOS/Bug fixes
 * Add a pop up for game end?
 * Had to add some magic numbers related to dimension I would like removed
-* Why are the coconuts disappearing before they actually hit the ground?
+* Why are the coconuts disappearing before they actually hit the ground? DONE 
 * Theres a wierd dimension swap going on between island object and the game manager
 * Any improvements to reduce coupling and improve cohesion
 * Come up with test Scenarios 
 * Game manager is 100% just a do it class
 * Hit Boxes are still too big
 * Headers/javadocs meet lab specs (modified by, etc)
-* The crab can run off the edge of the map (Done?)
+* The crab can run off the edge of the map (DONE?)
 
 
 ## Notes
