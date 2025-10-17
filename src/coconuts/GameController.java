@@ -18,6 +18,7 @@ public class GameController {
     private static final double MILLISECONDS_PER_STEP = 1000.0 / 30;
     private Timeline coconutTimeline;
     private boolean started = false;
+    public ScoreBoard scoreBoard;
 
     @FXML
     private Pane gamePane;
@@ -35,6 +36,10 @@ public class GameController {
                 (int) (gamePane.getPrefWidth()), gamePane);
 
         gamePane.setFocusTraversable(true);
+
+        // create and register scoreboard
+        scoreBoard = new ScoreBoard(this);
+        theGame.attach(scoreBoard);
 
         coconutTimeline = new Timeline(new KeyFrame(Duration.millis(MILLISECONDS_PER_STEP), (e) -> {
             theGame.tryDropCoconut();
@@ -63,10 +68,10 @@ public class GameController {
             }
         }
     }
-    public Label getShotCount() {
-        return shotCount;
+    public void updateShotCount(int integer) {
+        shotCount.setText(Integer.toString(integer));
     }
-    public Label getGroundCount() {
-        return landCount;
+    public void updateGroundCount(int integer) {
+        landCount.setText(Integer.toString(integer));
     }
 }

@@ -6,12 +6,12 @@ import javafx.scene.layout.Pane;
 
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.Observer;
+import java.util.Objects;
 
 // This class manages the game, including tracking all island objects and detecting when they hit
 public class OhCoconutsGameManager implements Subject {
     private final Collection<IslandObject> nonHittableObjects = new LinkedList<>();
-    private final Collection<HittableIslandObject> hittableIslandSubjects = new LinkedList<>();
+    private final Collection<HittableIslandObject> coconuts = new LinkedList<>();
     private final Collection<IslandObject> scheduledForRemoval = new LinkedList<>();
     private final Collection<GameObserver> observers = new LinkedList<>();
     private final int height, width;
@@ -20,6 +20,7 @@ public class OhCoconutsGameManager implements Subject {
     private Pane gamePane;
     private Crab theCrab;
     private Beach theBeach;
+
     /* game play */
     private int coconutsInFlight = 0;
     private int gameTick = 0;
@@ -41,25 +42,22 @@ public class OhCoconutsGameManager implements Subject {
     }
 
     private void registerObject(IslandObject object) {
-        // TODO it might make sense to have one list of hittable
-        // and one list of non hittable, instead of one list of all objects
-        // and one list of hittable objects
+        // one list of hittable, one list of non hittable
         if (object.isHittable()) {
             HittableIslandObject asHittable = (HittableIslandObject) object;
-            hittableIslandSubjects.add(asHittable);
+            coconuts.add(asHittable);
         } else {
             nonHittableObjects.add(object);
         }
     }
 
     public void shootLaser() {
-        LaserBeam laser = new LaserBeam(this, getCrab().hittable_height(),
+        LaserBeam laser = new LaserBeam(this, getCrab().hittableHeight(),
                 getCrab().x + (getCrab().width / 2));
         registerObject(laser);
         gamePane.getChildren().add(laser.getImageView());
         laser.display();
         //System.out.println(AssertNotNull(laser));
-        System.out.println("laser");
     }
     public int getHeight() {
         return height;
@@ -88,11 +86,12 @@ public class OhCoconutsGameManager implements Subject {
     }
 
     public void killCrab() {
+        System.out.println("Killing crab");
         theCrab = null;
     }
 
     public void advanceOneTick() {
-        for (IslandObject o : hittableIslandSubjects) {
+        for (IslandObject o : coconuts) {
             o.step();
             o.display();
         }
@@ -104,38 +103,55 @@ public class OhCoconutsGameManager implements Subject {
         //   items to be removed in the first pass and remove them later
         scheduledForRemoval.clear();
         for (IslandObject thisObj : nonHittableObjects) {
-            for (HittableIslandObject hittableObject : hittableIslandSubjects) {
-                if (thisObj.canHit(hittableObject) && thisObj.isTouching(hittableObject)) {
-                    // TODO: add code here to process the hit
-                    // the goal here is that only the coconut is a hittable object
-                    // This involves using the notify method to call the observers update method
-                    // and pass the hit event to the observer(s) (only the scoreboard)
-                    // we do this by getting the hit type of the non hittable
-                    // add the right objects to the scheduledForRemoval
-                    // The only hittable objects are the coconut instances
-                    // The crab, laser and beach can hit the coconut, but cannot be hit themselves
-                    // We also need to ensure based in the hit type that we remove/keep the non
-                    // hittable object hitting the hittable object
-                    // so when the crab hits the coconut, remove both
-                    // when the laser hits the coconut, remove both
-                    // when the beach hits the coconut, remove only the coconut
 
-                    scheduledForRemoval.add(hittableObject); // this should use the method below
+            // check to see if laser is in skybox
+            if(thisObj.isRising()){
+                if(thisObj.y <= 0){
+                    System.out.println("removing laser");
+                    scheduledForRemoval.add(thisObj);
+                    gamePane.getChildren().remove(thisObj.getImageView());
+                    break;
+                }
+            }
+
+            for (HittableIslandObject hittableObject : coconuts) {
+                if (thisObj.canHit(hittableObject) && thisObj.isTouching(hittableObject)) {
+                    System.out.println("hit registered");
+
+                    // the goal is that only the coconut is a hittable object
+                    // the non-hittable object (thisObj) determines the type of hit
+                    HitEvents hitType = thisObj.getHitType();
+                    System.out.println(hitType);
+
+                    notifyObservers(hitType);
+
+                    // automatically schedule coconut for deletion & decrement coconut count
+                    scheduleForDeletion(hittableObject);
                     gamePane.getChildren().remove(hittableObject.getImageView());
+                    coconutDestroyed();
+
+                    // handle the non-hittable object (thisObj) removal
+                    if (hitType == HitEvents.LASER) {
+                        // for laser, remove both
+                        scheduleForDeletion(thisObj);
+                        gamePane.getChildren().remove(thisObj.getImageView());
+                    } else if (hitType == HitEvents.CRAB) {
+                        // for crab hits the coconut, remove both & call kill crab
+                        killCrab();
+                        scheduleForDeletion(thisObj);
+                        gamePane.getChildren().remove(thisObj.getImageView());
+                    }
                 }
             }
 
         }
-        // actually remove the objects as needed
-        // we would need to update this if we switched list setup
-        // This would need to remove from non-hittable list and hittable list
         for (IslandObject thisObj : scheduledForRemoval) {
             // TODO fix instance of?
             if (!thisObj.isHittable()) {
                 nonHittableObjects.remove(thisObj);
             }
             if (thisObj instanceof HittableIslandObject) {
-                hittableIslandSubjects.remove((HittableIslandObject) thisObj);
+                coconuts.remove((HittableIslandObject) thisObj);
             }
         }
         scheduledForRemoval.clear();
@@ -145,8 +161,9 @@ public class OhCoconutsGameManager implements Subject {
         scheduledForRemoval.add(islandObject);
     }
 
+
     public boolean done() {
-        return coconutsInFlight == 0 && gameTick >= MAX_TIME;
+        return coconutsInFlight == 0 && gameTick >= MAX_TIME || theCrab == null;
     }
 
     @Override

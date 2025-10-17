@@ -20,15 +20,13 @@ import javafx.scene.control.Label;
  */
 public class ScoreBoard implements GameObserver {
 
-    private Label landCount;
-    private Label shotCount;
+    private GameController gameController;
     private int CoconutsOnGround = 0;
     private int CoconutsShot = 0;
     // hold the game state (score, lives, etc.)
 
-    public ScoreBoard(Label landCountLabel, Label shotCountLabel) {
-        this.landCount = landCountLabel;
-        this.shotCount = shotCountLabel;
+    public ScoreBoard(GameController gameController) {
+        this.gameController = gameController;
     }
 
     // This function needs to take in HitEvents and translate them to changes in the scoreboard
@@ -40,15 +38,20 @@ public class ScoreBoard implements GameObserver {
             case BEACH:
                 CoconutsOnGround++;
             case CRAB:
-                theGame.killCrab();
+                //theGame.killCrab();
+                // so we don't actually have to do anything in here
+                // because the game loop handles the object deletion
+                // and if we kill the crab here it throws a null pointer?
+                // TODO maybe make a pop-up?
+                break;
             case NULL_EVENT:
         }
         updateLabels();
     }
 
     private void updateLabels(){
-        landCount.setText(Integer.toString(CoconutsOnGround));
-        shotCount.setText(Integer.toString(CoconutsShot));
+        gameController.updateShotCount(CoconutsShot);
+        gameController.updateGroundCount(CoconutsOnGround);
     }
 }
     

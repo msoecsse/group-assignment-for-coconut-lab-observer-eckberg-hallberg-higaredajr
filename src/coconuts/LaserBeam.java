@@ -12,12 +12,17 @@ public class LaserBeam extends IslandObject {
         super(game, crabCenterX, eyeHeight, WIDTH, laserImage, HitEvents.LASER);
     }
 
-    public int hittable_height() {
+    public int hittableHeight() {
         return y + WIDTH;
     }
 
     @Override
     public void step() {
         y -= 3;
+    }
+
+    @Override
+    public boolean isRising() {
+        return true;
     }
 }

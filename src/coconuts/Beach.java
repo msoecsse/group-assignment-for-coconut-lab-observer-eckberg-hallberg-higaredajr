@@ -6,9 +6,15 @@ public class Beach extends IslandObject {
 
     public Beach(OhCoconutsGameManager game, int skyHeight, int islandWidth) {
         super(game, 0, skyHeight, islandWidth, null, HitEvents.BEACH);
-        // System.out.println("Beach at y = " + this.y);
+        System.out.println("Beach at y = " + this.y);
     }
 
     @Override
     public void step() { /* do nothing */ }
+
+    @Override
+    protected int hittableHeight() {
+        return y;
+    }
 }
+

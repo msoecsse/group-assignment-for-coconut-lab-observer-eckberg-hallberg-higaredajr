@@ -13,6 +13,7 @@ public abstract class IslandObject {
     ImageView imageView = null;
     protected final HitEvents hitType;
 
+    // TODO why is it x,y here and height and width here in the game manager?
     public IslandObject(OhCoconutsGameManager game, int x, int y, int width, Image image, HitEvents hitType) {
         containingGame = game;
         if (image != null) {
@@ -43,7 +44,9 @@ public abstract class IslandObject {
         return false;
     }
 
-    protected int hittable_height() {
+    protected int hittableHeight() {
+        System.out.println("Warning: Hittable Height is not overridden");
+        System.err.println(hitType);
         return 0;
     }
 
@@ -55,15 +58,28 @@ public abstract class IslandObject {
         return false;
     }
 
+    public boolean isRising() {
+        return false;
+    }
+
     public boolean canHit(IslandObject other) {
         return other.isHittable();
     }
 
     public boolean isTouching(IslandObject other) {
-        // TODO this only deletes if the objects are at the exact same height,
-        //  not overlapping.
-        return (other.hittable_height() == hittable_height() &&
-                other.x + (other.width / 2) >= x && other.x + (other.width * 2) <= x + width);
+
+        // check if overlap on x axis
+        boolean x_overlap = (this.x < other.x + other.width) &&
+                (this.x + this.width > other.x);
+
+       // check if overlap on y axis
+        boolean y_overlap = (this.y < other.y + other.width) &&
+                (this.y + this.width > other.y);
+
+        // collision occurs only if there is overlap on BOTH axes.
+        return x_overlap && y_overlap;
+        //return (other.hittableHeight() == hittableHeight() &&
+                //other.x + (other.width / 2) >= x && other.x + (other.width * 2) <= x + width);
     }
 
     public abstract void step();

@@ -18,8 +18,8 @@ public class Coconut extends HittableIslandObject {
     }
 
     @Override
-    protected int hittable_height() {
-        return y + (int)coconutImage.getHeight();
+    protected int hittableHeight() {
+        return y + width;
     }
 
     @Override
