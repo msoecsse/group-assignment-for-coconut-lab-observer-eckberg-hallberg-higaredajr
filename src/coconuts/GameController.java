@@ -38,7 +38,7 @@ public class GameController {
         gamePane.setFocusTraversable(true);
 
         // create and register scoreboard
-        scoreBoard = new ScoreBoard(this);
+        scoreBoard = new ScoreBoard(landCount, shotCount);
         theGame.attach(scoreBoard);
 
         coconutTimeline = new Timeline(new KeyFrame(Duration.millis(MILLISECONDS_PER_STEP), (e) -> {
@@ -67,11 +67,5 @@ public class GameController {
                 started = false;
             }
         }
-    }
-    public void updateShotCount(int integer) {
-        shotCount.setText(Integer.toString(integer));
-    }
-    public void updateGroundCount(int integer) {
-        landCount.setText(Integer.toString(integer));
     }
 }

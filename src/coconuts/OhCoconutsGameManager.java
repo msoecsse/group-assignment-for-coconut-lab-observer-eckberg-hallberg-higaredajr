@@ -131,6 +131,8 @@ public class OhCoconutsGameManager implements Subject {
                     coconutDestroyed();
 
                     // handle the non-hittable object (thisObj) removal
+                    // beach doesnt need to be handled here because the coconut already got removed
+                    // that could be moved back into the if statement if people think it improves readability
                     if (hitType == HitEvents.LASER) {
                         // for laser, remove both
                         scheduleForDeletion(thisObj);

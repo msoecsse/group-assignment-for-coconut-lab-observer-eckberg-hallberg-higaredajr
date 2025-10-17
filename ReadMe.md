@@ -69,6 +69,6 @@ It will then call OhCoconutsGameManager methods that update the observers?
   which of the two fields in the scoreboard it needs to change (coconut hit ground or coconut hit laser)
 * Game end observer 
 
-**only thing thats hittable is the coconut** **the only things that can hit would be the ground, crab, and laser**
+**only thing that's hittable is the coconut** **the only things that can hit would be the ground, crab, and laser**
 
 

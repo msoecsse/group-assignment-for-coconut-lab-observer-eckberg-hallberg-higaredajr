@@ -20,13 +20,15 @@ import javafx.scene.control.Label;
  */
 public class ScoreBoard implements GameObserver {
 
-    private GameController gameController;
-    private int CoconutsOnGround = 0;
-    private int CoconutsShot = 0;
+    private Label shotLabel;
+    private Label groundLabel;
+    private int coconutsOnGround = 0;
+    private int coconutsShot = 0;
     // hold the game state (score, lives, etc.)
 
-    public ScoreBoard(GameController gameController) {
-        this.gameController = gameController;
+    public ScoreBoard(Label groundLabel, Label shotLabel) {
+        this.groundLabel = groundLabel;
+        this.shotLabel = shotLabel;
     }
 
     // This function needs to take in HitEvents and translate them to changes in the scoreboard
@@ -34,9 +36,9 @@ public class ScoreBoard implements GameObserver {
     public void update(HitEvents hitType, OhCoconutsGameManager theGame) {
         switch (hitType){
             case LASER:
-                CoconutsShot++;
+                coconutsShot++;
             case BEACH:
-                CoconutsOnGround++;
+                coconutsOnGround++;
             case CRAB:
                 //theGame.killCrab();
                 // so we don't actually have to do anything in here
@@ -49,9 +51,11 @@ public class ScoreBoard implements GameObserver {
         updateLabels();
     }
 
+    // TODO is it better for coupling to pass in the labels or pass in the whole
+    //  controller and do setters?
     private void updateLabels(){
-        gameController.updateShotCount(CoconutsShot);
-        gameController.updateGroundCount(CoconutsOnGround);
+        groundLabel.setText(Integer.toString(coconutsOnGround));
+        shotLabel.setText(Integer.toString(coconutsShot));
     }
 }
     
