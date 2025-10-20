@@ -6,9 +6,9 @@ import javafx.scene.layout.Pane;
 
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.Objects;
 
-/** This class manages the game, including tracking all island objects and detecting when they hit
+/**
+ * This class manages the game, including tracking all island objects and detecting when they hit
  * Modified by Anthony, John
  */
 public class OhCoconutsGameManager implements Subject {
@@ -37,14 +37,15 @@ public class OhCoconutsGameManager implements Subject {
         registerObject(theCrab);
         gamePane.getChildren().add(theCrab.getImageView());
 
-        this.theBeach = new Beach(this, height, width);
+        // note that this doesnt change the beaches render height, just it's hitbox
+        this.theBeach = new Beach(this, height + theCrab.width, width);
         registerObject(theBeach);
         if (theBeach.getImageView() != null)
             System.out.println("Unexpected image view for beach");
     }
 
     private void registerObject(IslandObject object) {
-        // one list of hittable, one list of non hittable
+        // one list of hittable, one list of non-hittable
         if (object.isHittable()) {
             HittableIslandObject asHittable = (HittableIslandObject) object;
             coconuts.add(asHittable);

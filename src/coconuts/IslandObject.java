@@ -18,7 +18,7 @@ public abstract class IslandObject {
     ImageView imageView = null;
     protected final HitEvents hitType;
 
-    // TODO why is it x,y here and height and width here in the game manager?
+    // why is it x,y here and height and width here in the game manager?
     //  when we actually instantiate the sub classes, we swap the x & y before it goes into the super
     public IslandObject(OhCoconutsGameManager game, int x, int y, int width, Image image, HitEvents hitType) {
         containingGame = game;
@@ -73,18 +73,22 @@ public abstract class IslandObject {
     }
 
     public boolean isTouching(IslandObject other) {
-        // TODO hit boxes are still kinda messed up (too big?)
-        // TODO maybe we need a hittable width as well?
+        
 
-        // check if overlap on x axis
-        boolean xOverlap = (this.x < other.x + other.width) &&
-                (this.x + this.width > other.x);
+        int thisHittableWidth = this.x + this.width;
+        int otherHittableWidth = other.x + other.width;
 
-       // check if overlap on y axis (assuming width & height are the same)
-        boolean yOverlap = (this.y < other.hittableHeight()) &&
-                (this.hittableHeight() > other.y);
+        // the left edge of this object must be to the left of the right edge of the other object
+        boolean xOverlap = (this.x < otherHittableWidth)
+        // and, the right edge of this object must be to the right of the left edge of the other object
+                && (thisHittableWidth > other.x);
 
-        // collision occurs only if there is overlap on BOTH axes.
+        // the top edge of this object is above the bottom edge of the other object
+        boolean yOverlap = (this.y < other.hittableHeight())
+        // and the bottom edge of this object is below the top edge of the other object
+                && (this.hittableHeight() > other.y);
+
+        // collision occurs only if there is overlap on both axises.
         return xOverlap && yOverlap;
 //        return (other.hittableHeight() == hittableHeight() &&
 //                other.x + (other.width / 2) >= x && other.x + (other.width * 2) <= x + width);
