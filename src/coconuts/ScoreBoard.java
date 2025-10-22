@@ -12,11 +12,12 @@ import javafx.scene.control.Label;
 /**
  * Course SWE2410-121
  * Fall 2025-2026
- * Class ScoreBoard Purpose: implements the scoreboard; implements the observer interface
+ * Class ScoreBoard
+ * Responsibility: implements the scoreboard; implements the observer interface
  *
- * @author eckbergj
+ * @author John Eckberg
  * @version created on 10/9/2025 11:29 AM
- * Modified by Anthony
+ * Modified by Anthony 10/17/2025
  */
 public class ScoreBoard implements GameObserver {
 

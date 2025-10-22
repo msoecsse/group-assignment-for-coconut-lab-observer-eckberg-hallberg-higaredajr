@@ -1,3 +1,9 @@
+/*
+ * Course: SWE2410-121
+ * Fall 2025-2026
+ * File header contains class IslandObject
+ * Name: eckbergj
+ */
 package coconuts;
 
 import javafx.scene.image.Image;
@@ -9,7 +15,7 @@ import javafx.scene.image.ImageView;
 
 /**
  * Responsibility: An object in the game, either something coming from the island or falling on it
- * Modified by John Eckberg
+ * Modified by John Eckberg 10/17/2025
  */
 public abstract class IslandObject {
     protected final int width;
@@ -73,7 +79,7 @@ public abstract class IslandObject {
     }
 
     public boolean isTouching(IslandObject other) {
-        
+
 
         int thisHittableWidth = this.x + this.width;
         int otherHittableWidth = other.x + other.width;

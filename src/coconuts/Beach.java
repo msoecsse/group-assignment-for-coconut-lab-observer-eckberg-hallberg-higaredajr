@@ -1,10 +1,20 @@
+/*
+ * Course: SWE2410-121
+ * Fall 2025-2026
+ * File header contains class Beach
+ * Name: higaredajra
+ * Created 10/16/2025
+ */
 package coconuts;
 
 //
 // This is a domain class; do not introduce JavaFX or other GUI components here
 
 /**
- * the beach catches (hits) coconuts and increases the coconut score
+ * Course SWE2410-121
+ * Fall 2025-2026
+ * Class Beach
+ * Responsibility: the beach catches (hits) coconuts and increases the coconut score
  * Modified by: John Eckberg
  */
 public class Beach extends IslandObject {

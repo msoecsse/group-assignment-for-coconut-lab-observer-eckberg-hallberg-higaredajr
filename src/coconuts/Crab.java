@@ -1,14 +1,18 @@
+/*
+ * Course: SWE2410-121
+ * Fall 2025-2026
+ * File header contains class Crab
+ * Name: higaredajra
+ */
 package coconuts;
 
 import javafx.scene.image.Image;
 
-//
-// This is a domain class; other than Image, do not introduce JavaFX or other GUI components here
 
 /**
  * Responsibility: Represents the object that shoots down coconuts but can be hit by coconuts. Killing the
  * crab ends the game
- * Modified by: Anthony Higareda jr.
+ * Modified by: Anthony Higareda jr. 10/17/2025
  */
 public class Crab extends IslandObject {
     private static final int WIDTH = 50; // assumption: height and width are the same

@@ -10,7 +10,8 @@ package coconuts;
 /**
  * Course SWE2410-121
  * Fall 2025-2026
- * Enum HitEvents Purpose: Various kinds of hit events that can occur
+ * Enum HitEvents
+ * Responsibility: Various kinds of hit events that can occur
  *
  * @author higaredajra
  * @version created on 10/16/2025 11:16 AM

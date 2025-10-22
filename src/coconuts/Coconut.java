@@ -1,9 +1,20 @@
+/*
+ * Course: SWE2410-121
+ * Fall 2025-2026
+ * File header contains class Coconut
+ * Name: higaredajra
+ */
 package coconuts;
 
 import javafx.scene.image.Image;
 
-// Represents the falling object that can kill crabs. If hit by a laser, the coconut disappears
-// This is a domain class; other than Image, do not introduce JavaFX or other GUI components here
+/**
+ * Course SWE2410-121
+ * Fall 2025-2026
+ * Class Coconut
+ * Responsibility: Represents the falling object that can kill crabs. If hit by a laser, the coconut disappears
+ * Modified by Anthony 10/16/2025
+ */
 public class Coconut extends HittableIslandObject {
     private static final int WIDTH = 50;
     private static final Image coconutImage = new Image("file:images/coco-1.png");

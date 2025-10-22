@@ -1,3 +1,9 @@
+/*
+ * Course: SWE2410-121
+ * Fall 2025-2026
+ * File header contains class OhCoconutsGameManager
+ * Name: eckbergj
+ */
 package coconuts;
 
 // https://stackoverflow.com/questions/42443148/how-to-correctly-separate-view-from-model-in-javafx
@@ -8,8 +14,11 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 /**
- * This class manages the game, including tracking all island objects and detecting when they hit
- * Modified by Anthony, John
+ * Course SWE2410-121
+ * Fall 2025-2026
+ * Class OhCoconutsGameManager
+ * Responsibility: This class manages the game, including tracking all island objects and detecting when they hit
+ * Modified by Anthony, John 10/17/2025
  */
 public class OhCoconutsGameManager implements Subject {
     private final Collection<IslandObject> nonHittableObjects = new LinkedList<>();

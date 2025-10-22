@@ -2,7 +2,7 @@
  * Course: SWE2410-121
  * Fall 2025-2026
  * File header contains class IslandObjectRemover
- * Name: eckbergj
+ * Name: John Eckberg
  * Created 10/21/2025
  */
 package coconuts;
@@ -10,9 +10,10 @@ package coconuts;
 /**
  * Course SWE2410-121
  * Fall 2025-2026
- * Class IslandObjectRemover Purpose: Observer that removes Island Objects from the Game Manager
+ * Class IslandObjectRemover
+ * Responsibility: Observer that removes Island Objects from the Game Manager
  *
- * @author eckbergj
+ * @author John Eckberg
  * @version created on 10/21/2025 8:07 PM
  */
 public class IslandObjectRemover implements GameObserver{

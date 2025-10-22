@@ -1,13 +1,20 @@
+/*
+ * Course: SWE2410-121
+ * Fall 2025-2026
+ * File header contains class LaserBeam
+ * Name: John Eckberg
+ */
 package coconuts;
 
 import javafx.scene.image.Image;
 
-//
-// This is a domain class; do not introduce JavaFX or other GUI components here
 
 /**
- * Represents the beam of light moving from the crab to a coconut; can hit only falling objects
- * Modified by John, Anthony
+ * Course SWE2410-121
+ * Fall 2025-2026
+ * Class Laser
+ * Responsibility: Represents the beam of light moving from the crab to a coconut; can hit only falling objects
+ * Modified by John, Anthony 10/17/2025
  */
 public class LaserBeam extends IslandObject {
     private static final int WIDTH = 12; // TODO must be updated with image
