@@ -33,7 +33,7 @@ public class ScoreBoard implements GameObserver {
 
     // This function needs to take in HitEvents and translate them to changes in the scoreboard
     @Override
-    public void update(HitEvents hitType, OhCoconutsGameManager theGame) {
+    public void update(IslandObject thisObj, IslandObject hittableObj, HitEvents hitType, OhCoconutsGameManager theGame) {
         switch (hitType){
             case LASER:
                 coconutsShot++;

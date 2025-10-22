@@ -39,7 +39,9 @@ public class GameController {
 
         // create and register scoreboard
         scoreBoard = new ScoreBoard(landCount, shotCount);
+        IslandObjectRemover remover = new IslandObjectRemover();
         theGame.attach(scoreBoard);
+        theGame.attach(remover);
 
         coconutTimeline = new Timeline(new KeyFrame(Duration.millis(MILLISECONDS_PER_STEP), (e) -> {
             theGame.tryDropCoconut();

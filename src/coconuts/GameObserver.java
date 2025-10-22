@@ -17,6 +17,6 @@ package coconuts;
  */
 public interface GameObserver {
 
-    public void update(HitEvents hitType, OhCoconutsGameManager theGame);
+    public void update(IslandObject thisObj, IslandObject hittableObj, HitEvents hitType, OhCoconutsGameManager theGame);
 
 }

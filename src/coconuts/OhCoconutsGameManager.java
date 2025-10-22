@@ -19,7 +19,7 @@ public class OhCoconutsGameManager implements Subject {
     private final int height, width;
     private final int DROP_INTERVAL = 10;
     private final int MAX_TIME = 100;
-    private Pane gamePane;
+    Pane gamePane;
     private Crab theCrab;
     private Beach theBeach;
 
@@ -125,26 +125,7 @@ public class OhCoconutsGameManager implements Subject {
                     HitEvents hitType = thisObj.getHitType();
                     System.out.println(hitType);
 
-                    notifyObservers(hitType);
-
-                    // automatically schedule coconut for deletion & decrement coconut count
-                    scheduleForDeletion(hittableObject);
-                    gamePane.getChildren().remove(hittableObject.getImageView());
-                    coconutDestroyed();
-
-                    // handle the non-hittable object (thisObj) removal
-                    // beach doesn't need to be handled here because the coconut already got removed
-                    // that could be moved back into the if statement if people think it improves readability
-                    if (hitType == HitEvents.LASER) {
-                        // for laser, remove both
-                        scheduleForDeletion(thisObj);
-                        gamePane.getChildren().remove(thisObj.getImageView());
-                    } else if (hitType == HitEvents.CRAB) {
-                        // for crab hits the coconut, remove both & call kill crab
-                        killCrab();
-                        scheduleForDeletion(thisObj);
-                        gamePane.getChildren().remove(thisObj.getImageView());
-                    }
+                    notifyObservers(thisObj, hittableObject, hitType);
                 }
             }
 
@@ -179,9 +160,9 @@ public class OhCoconutsGameManager implements Subject {
     }
 
     @Override
-    public void notifyObservers(HitEvents hitType) {
+    public void notifyObservers(IslandObject obj1, IslandObject obj2, HitEvents hitType) {
         for (GameObserver ob : observers) {
-            ob.update(hitType, this);
+            ob.update(obj1, obj2, hitType, this);
         }
     }
 }
